@@ -17,6 +17,15 @@ def wraps(wrapped, assigned=None, updated=None):
     return lambda x: x
 
 
+def lru_cache(*args, **kwargs):
+    def lru_cache_impl(func):
+        return func
+    if len(args) == 1 and callable(args[0]):
+        return lru_cache_impl(args[0])
+    else:
+        return lru_cache_impl
+
+
 def reduce(function, iterable, initializer=None):
     it = iter(iterable)
     if initializer is None:
